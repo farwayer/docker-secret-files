@@ -1,0 +1,4 @@
+.idea/
+secret/*
+!secret/README.md
+dsecret/

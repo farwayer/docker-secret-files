@@ -1,0 +1,12 @@
+#!/bin/sh
+
+OUTDIR=$1
+PASSWORD=$2
+
+if [ -z "$OUTDIR" ] || [ -z "$PASSWORD" ]; then
+  printf "Usage: $0 outdir password\n"
+  exit 1
+fi
+
+mkdir -p "$OUTDIR"
+gpg -d --batch --passphrase "$PASSWORD" /secret.tar.gpg | tar xvC "$OUTDIR"
