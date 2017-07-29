@@ -2,7 +2,7 @@
 
 Sometimes you need to put some secret files inside docker image.  
 One example is CI that can use secret variables but can't use secret files
-(hello [GitLab](gitlab.com)). 
+(hello [GitLab](https://gitlab.com)). 
 With `docker-secret-files` you can protect such files with encryption.  
 
 Idea is very simple:
