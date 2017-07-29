@@ -3,7 +3,7 @@
 Sometimes you need to put some secret files inside docker image.  
 One example is CI that can use secret variables but can't use secret files
 (hello [GitLab](gitlab.com)). 
-With `docker-secret` you can protect such files with encryption.  
+With `docker-secret-files` you can protect such files with encryption.  
 
 Idea is very simple:
 1. Encrypt files with GPG, protect them with password and place inside docker
@@ -26,7 +26,7 @@ it for you.
 Squashing is experimental feature for now (docker 17.06.0) so docker daemon
 should be started with `--experimental=true` flag (building only).
 
-1. git clone https://github.com/farwayer/docker-secret.git && cd docker-secret
+1. `git clone https://github.com/farwayer/docker-secret-files.git && cd docker-secret-files`
 2. Put secret files inside `secret/`
 3. `./secret.sh -c pAssW0rd`
 
