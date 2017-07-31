@@ -26,12 +26,11 @@ it for you.
 Squashing is experimental feature for now (docker 17.06.0) so docker daemon
 should be started with `--experimental=true` flag (building only).
 
-1. `git clone https://github.com/farwayer/docker-secret-files.git && cd docker-secret-files`
-2. Put secret files inside `secret/`
-3. `./secret.sh -c pAssW0rd`
+1. put secret files inside `secret/`
+2. `./secret.sh -c pAssW0rd`
 
-```sh
- ./secret.sh -c [-i image-name] [-p] pAssW0rd
+```bash
+$ ./secret.sh -c [-i image-name] [-p] pAssW0rd
 
   -c: create image
   -i: image name ('secret' is default)
@@ -44,8 +43,8 @@ should be started with `--experimental=true` flag (building only).
 
 `./secret.sh -d pAssW0rd`
 
-```sh
-  ./secret.sh -d [-i image-name] [-o out-secret] pAssW0rd
+```bash
+$ ./secret.sh -d [-i image-name] [-o out-secret] pAssW0rd
 
   -d: decrypt and get out secret files
   -i: image name ('secret' is default)
@@ -71,5 +70,6 @@ build:
   stage: build
   script:
     - ls -la /builds/$CI_PROJECT_NAMESPACE/secrets
+```
 
 Log will show warning about failing to link container but all will be ok :)
