@@ -60,39 +60,16 @@ should be started with `--experimental=true` flag (building only).
 
 ```yaml
 stages:
-  - secret
   - build
-  - clean
 
-secret:
-  stage: secret
-  image: registry.gitlab.com/secret-image
-  variables:
-    GIT_STRATEGY: none
-  script:
-    - decrypt keystore/ "$SECRET_PASSWORD"
-  cache:
-    policy: push
-    paths:
-      - keystore/release.jks
+services:
+  - image: registry.gitlab.com/secret-image
+    entrypoint: [sh, -c, decrypt /builds/$CI_PROJECT_NAMESPACE/secrets $SECRET_PASSWORD]
 
 build:
-  image: registry.gitlab.com/...
-  stage: build
-  cache:
-    policy: pull
-    paths:
-      - keystore/release.jks
-    ...
-
-clean: # override cache after build to prevent save secret files
   image: busybox
-  stage: clean
-  when: always
-  cache:
-    policy: push
-    paths:
-      - empty
+  stage: build
   script:
-    - touch empty
-```
+    - ls -la /builds/$CI_PROJECT_NAMESPACE/secrets
+
+Log will show warning about failing to link container but all will be ok :)
