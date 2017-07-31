@@ -58,9 +58,6 @@ $ ./secret.sh -d [-i image-name] [-o out-secret] pAssW0rd
 ## Using with gitlab-ci
 
 ```yaml
-stages:
-  - build
-  
 # fix issue https://gitlab.com/gitlab-org/gitlab-ce/issues/18214
 variables:
   SECRET_PASSWORD: $SECRET_PASSWORD
@@ -71,9 +68,9 @@ services:
 
 build:
   image: busybox
-  stage: build
   script:
     - ls -la /builds/$CI_PROJECT_NAMESPACE/secrets
 ```
 
-Log will show warning about failing to link container but all will be ok :)
+Log will show warning about failing to link container. Image do not expose any
+ports so it's ok. Just ignore it.
