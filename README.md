@@ -60,6 +60,10 @@ $ ./secret.sh -d [-i image-name] [-o out-secret] pAssW0rd
 ```yaml
 stages:
   - build
+  
+# fix [issue](https://gitlab.com/gitlab-org/gitlab-ce/issues/18214)
+variables:
+  SECRET_PASSWORD: $SECRET_PASSWORD
 
 services:
   - image: registry.gitlab.com/secret-image
